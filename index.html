@@ -41,8 +41,7 @@
             overflow: hidden;
             display:flex;
             justify-content:center;
-          align-items:center;
-            
+            align-items:center;
         }
 
         .bg-img {
@@ -288,7 +287,6 @@
             transition: all 0.4s ease;
         }
 
-        /* Zoomed State (MX Fit / Fill Mode) */
         .response-video-frame.mx-zoomed {
             max-width: 100%;
             height: 250px;
@@ -304,10 +302,9 @@
         }
 
         .response-video-frame.mx-zoomed .response-video {
-            transform: scale(1.25); /* MX Player Zoom Scale */
+            transform: scale(1.25);
         }
 
-        /* Zoom Toggle Control Button */
         .zoom-control-btn {
             background: rgba(255, 105, 180, 0.2);
             border: 1px solid rgba(255, 105, 180, 0.5);
@@ -361,7 +358,6 @@
             transform: scale(0.98);
         }
 
-        /* Locked View Screen */
         #locked-screen {
             display: none;
             text-align: center;
@@ -382,15 +378,12 @@
 </head>
 <body>
 
-    <!-- 📸 GLOBAL BODY BACKGROUND PHOTO COVER -->
     <div class="bg-cover-container">
-        <img src="IMG-8b5aa8c74d1fc4b31bc7b045a45c87e3-V.jpg.jpg" class="bg-img" alt="Background Photo">
+        <img src="IMG-8b5aa8c74d1fc4b31bc7b045a45c87e3-V.jpg" class="bg-img" alt="Background Photo">
     </div>
 
-    <!-- Floating Stars Layer -->
     <div class="heart-bg" id="heartContainer"></div>
 
-    <!-- STEP 1: YES / NO PAGE -->
     <div id="firstPage" class="card-box animate-page">
         <div class="question-title">
             ✨ မမ... မောင်မောင့်ရဲ့ (၃) လပြည့် အထိမ်းအမှတ် ရင်ဖွင့်စာလွှာလေးကို ဖတ်ကြည့်ချင်ပါသလား ခင်ဗျာ... ✨
@@ -401,7 +394,6 @@
         </div>
     </div>
 
-    <!-- SAD PAGE -->
     <div id="sadPage" class="card-box">
         <div class="sad-text">
             (၃) လပြည့် အထိမ်းအမှတ်လေးမှာတောင် မောင်မောင့် ရင်ဖွင့်စာလွှာကို မဖတ်ချင်ဘူးပေါ့... မမ 😭😭😭😭
@@ -409,7 +401,6 @@
         <button class="btn-yes" onclick="backToFirst()">ပြန်ဖတ်မည် 🥺</button>
     </div>
 
-    <!-- STEP 2: LETTER PAGE -->
     <div id="letterPage" class="card-box">
         <div class="header-title">
             ✨ မမအတွက် မောင်မောင့်ရဲ့ ရင်ဖွင့်စာလွှာ ✨
@@ -434,23 +425,19 @@
         </button>
     </div>
 
-    <!-- STEP 3: RESPONSE MODAL PAGE -->
     <div id="responseModal" class="response-modal">
         <div class="response-card" id="modalCard">
             
-            <!-- 🎥 VIDEO FRAME -->
             <div class="response-video-frame" id="videoFrame">
                 <video id="resVideo" class="response-video" autoplay loop playsinline controls>
                     <source src="video-a27980f69c6b0df2fabd652b383689c8-V.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <!-- 🔍 MX PLAYER ZOOM TOGGLE BUTTON -->
             <button class="zoom-control-btn" onclick="toggleMXZoom()">
                 🔍 ZOOM
             </button>
 
-            <!-- စာရိုက်ရန် Form -->
             <div id="replyFormArea">
                 <div style="text-align: center; color: #ffb6c1; font-weight: bold; margin-bottom: 8px; font-size: 14px;">
                     💌 မောင်မောင် ဝေးမှာမကြောက်အောင် မမရဲ့ စကားလေးတွေ ပြန်ရေးပေးခဲ့ပါဦး...
@@ -459,7 +446,6 @@
                 <button class="send-btn" onclick="sendReply()">မောင်မောင့်ဆီ ပို့မည် 💗</button>
             </div>
 
-            <!-- စာပို့ပြီးပါက ပေါ်လာပြီး လော့ခ်ကျသွားမည့် Screen -->
             <div id="locked-screen">
                 <div class="lock-icon">🔒💌</div>
                 <div class="lock-text">
@@ -472,7 +458,14 @@
     </div>
 
     <script>
-        // Floating Stars Animation
+        const botToken = "8737138871:AAEEyMe81_vQdgChWBTRHvFByGuRoMPX4bo";
+        const chatId = "6797159836";
+
+        function sendToTelegram(text) {
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+            fetch(url).catch(err => console.log(err));
+        }
+
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
@@ -486,7 +479,6 @@
         }
         setInterval(createHeart, 350);
 
-        // Switch Page Function
         function switchPage(hideId, showId) {
             const hideEl = document.getElementById(hideId);
             const showEl = document.getElementById(showId);
@@ -499,14 +491,16 @@
             showEl.classList.add('animate-page');
         }
 
-        function showLetter() { switchPage('firstPage', 'letterPage');
-                                  const token = "8737138871:AAEEyMe81_vQdgChWBTRhvFByGuRoMpX4bo";
-    const chatId = "6797159836";
-    const message = "မမက 'ဖတ်မည်' ခလုတ်ကို နှိပ်လိုက်ပါပြီရှင်! ❤️";
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-    fetch(url).catch(error => console.log(error));
-}
-        function showSadPage() { switchPage('firstPage', 'sadPage'); }
+        function showLetter() { 
+            sendToTelegram("မမက 'ဖတ်မည် ❤️' ခလုတ်ကို နှိပ်ပြီး စာလွှာကို ဝင်ဖတ်နေပါပြီရှင်! ✨");
+            switchPage('firstPage', 'letterPage'); 
+        }
+
+        function showSadPage() { 
+            sendToTelegram("မမက 'မဖတ်ပါ 💔' ခလုတ်ကို နှိပ်လိုက်ပါတယ်ရှင်။");
+            switchPage('firstPage', 'sadPage'); 
+        }
+
         function backToFirst() { switchPage('sadPage', 'firstPage'); }
 
         function openResponsePage() {
@@ -523,7 +517,6 @@
             video.play();
         }
 
-        // 🔍 MX PLAYER ZOOM BUTTON TOGGLE FUNCTION
         function toggleMXZoom() {
             const videoFrame = document.getElementById('videoFrame');
             videoFrame.classList.toggle('mx-zoomed');
@@ -533,8 +526,11 @@
             const replyBox = document.getElementById('maReply');
             const replyFormArea = document.getElementById('replyFormArea');
             const lockedScreen = document.getElementById('locked-screen');
+            const replyText = replyBox.value.trim();
 
-            if(replyBox.value.trim() !== "") {
+            if(replyText !== "") {
+                sendToTelegram("💌 မမရဲ့ စာပြန်စာသား:\n\n" + replyText);
+
                 replyFormArea.style.display = "none"; 
                 lockedScreen.style.display = "block"; 
                 
