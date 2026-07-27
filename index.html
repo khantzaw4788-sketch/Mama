@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Beloved Ma Ma ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Padauk', sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #05050a;
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        /* 📸 GLOBAL BODY BACKGROUND PHOTO COVER */
+        .bg-cover-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+            display:flex;
+            justify-content:center;
+          align-items:center;
+            
+        }
+
+        .bg-img {
+            width: 100vw;
+            height: 200vh;
+            object-fit: cover;
+            object-position: center ;
+            filter: brightness(0.5) blur(1px);
+        }
+
+        /* Floating Stars Layer */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.6);
+            animation: float 6s infinite ease-in;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* ✨ PAGE ANIMATIONS */
+        .animate-page {
+            animation: fadeInZoom 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* CARD CONTAINERS */
+        .card-box {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 500px;
+            background: rgba(15, 10, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 192, 203, 0.3);
+            border-radius: 24px;
+            padding: 30px 22px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 105, 180, 0.2);
+            color: #ffffff;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* ------------------------------------
+           STEP 1: YES / NO LANDING PAGE
+        ------------------------------------ */
+        .question-title {
+            font-size: 18px;
+            color: #ffb6c1;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-weight: bold;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            padding: 12px 30px;
+            color: white;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .btn-yes:active {
+            transform: scale(0.95);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            color: #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-no:active {
+            transform: scale(0.95);
+        }
+
+        /* ------------------------------------
+           SAD PAGE
+        ------------------------------------ */
+        #sadPage {
+            display: none;
+        }
+
+        .sad-text {
+            color: #ffb6c1;
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* ------------------------------------
+           STEP 2: LETTER PAGE
+        ------------------------------------ */
+        #letterPage {
+            display: none;
+            text-align: left;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 20px;
+            color: #ffb6c1;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+        }
+
+        .romantic-letter {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #f0f0f5;
+            text-align: justify;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .romantic-letter::-webkit-scrollbar {
+            width: 5px;
+        }
+        .romantic-letter::-webkit-scrollbar-thumb {
+            background: rgba(255, 105, 180, 0.5);
+            border-radius: 10px;
+        }
+
+        .english-quote {
+            font-family: sans-serif;
+            font-style: italic;
+            color: #ffd700;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 12px 0;
+        }
+
+        .open-response-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            padding: 14px;
+            color: white;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .open-response-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ------------------------------------
+           STEP 3: RESPONSE MODAL PAGE
+        ------------------------------------ */
+        .response-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .response-card {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(15, 10, 25, 0.88);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 105, 180, 0.3);
+            position: relative;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* 🎥 MX PLAYER ZOOM FRAME CONTAINER */
+        .response-video-frame {
+            width: 100%;
+            max-width: 280px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 auto 8px auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #000;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        /* Zoomed State (MX Fit / Fill Mode) */
+        .response-video-frame.mx-zoomed {
+            max-width: 100%;
+            height: 250px;
+            border-color: #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .response-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .response-video-frame.mx-zoomed .response-video {
+            transform: scale(1.25); /* MX Player Zoom Scale */
+        }
+
+        /* Zoom Toggle Control Button */
+        .zoom-control-btn {
+            background: rgba(255, 105, 180, 0.2);
+            border: 1px solid rgba(255, 105, 180, 0.5);
+            color: #ffb6c1;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .zoom-control-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 105, 180, 0.4);
+            color: #fff;
+        }
+
+        .reply-input {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 12px;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .send-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            padding: 12px;
+            color: white;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .send-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Locked View Screen */
+        #locked-screen {
+            display: none;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .lock-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .lock-text {
+            color: #ffb6c1;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 📸 GLOBAL BODY BACKGROUND PHOTO COVER -->
+    <div class="bg-cover-container">
+        <img src="IMG-8b5aa8c74d1fc4b31bc7b045a45c87e3-V.jpg" class="bg-img" alt="Background Photo">
+    </div>
+
+    <!-- Floating Stars Layer -->
+    <div class="heart-bg" id="heartContainer"></div>
+
+    <!-- STEP 1: YES / NO PAGE -->
+    <div id="firstPage" class="card-box animate-page">
+        <div class="question-title">
+            ✨ မမ... မောင်မောင့်ရဲ့ (၃) လပြည့် အထိမ်းအမှတ် ရင်ဖွင့်စာလွှာလေးကို ဖတ်ကြည့်ချင်ပါသလား ခင်ဗျာ... ✨
+        </div>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="showLetter()">ဖတ်မည် ❤️</button>
+            <button class="btn-no" onclick="showSadPage()">မဖတ်ပါ 💔</button>
+        </div>
+    </div>
+
+    <!-- SAD PAGE -->
+    <div id="sadPage" class="card-box">
+        <div class="sad-text">
+            (၃) လပြည့် အထိမ်းအမှတ်လေးမှာတောင် မောင်မောင့် ရင်ဖွင့်စာလွှာကို မဖတ်ချင်ဘူးပေါ့... မမ 😭😭😭😭
+        </div>
+        <button class="btn-yes" onclick="backToFirst()">ပြန်ဖတ်မည် 🥺</button>
+    </div>
+
+    <!-- STEP 2: LETTER PAGE -->
+    <div id="letterPage" class="card-box">
+        <div class="header-title">
+            ✨ မမအတွက် မောင်မောင့်ရဲ့ ရင်ဖွင့်စာလွှာ ✨
+        </div>
+
+        <div class="romantic-letter">
+            မမ ရေ... မောင်မောင် အခုလို စာလေးရေးပြီး မမကို ပေးချင်နေတာ ကြာပြီ။ မမနဲ့ မောင်မောင် ချစ်သူတွေဖြစ်ခဲ့ကြတာ လာမယ့် <b>8.8.2026</b> ဆိုရင် <b>(၃) လ</b> တောင် ပြည့်တော့မယ်နော်။ အချိန်တွေ ကုန်တာ တကယ် မြန်လွန်းတယ်။ အခုထိ မမနဲ့ မောင်မောင် တစ်ခါမှ မတွေ့ဖူးသေးပေမဲ့ မောင်မောင့် စိတ်ထဲမှာတော့ မမဟာ မောင်မောင့်ဘေးမှာ အမြဲတမ်း ရှိနေသလိုမျိုး လေးနက်စွာ ခံစားရပါတယ်။ <br><br>
+
+            မောင်မောင် ကျောင်းတစ်ဖက်နဲ့မို့ မမကို သေချာ အချိန်မပေးနိုင်တာတွေ၊ အမြဲတမ်း မဂရုစိုက်ပေးနိုင်ခဲ့တာတွေကို မောင်မောင့်ကို နားလည်ပေးပါနော်။ မမကို အရမ်းတောင်းပန်ပါတယ်။ မောင်မောင် ဘယ်လောက်ပဲ အလုပ်ရှုပ်ရှုပ် စိတ်ထဲမှာတော့ မမကိုပဲ အမြဲတမ်း သတိရနေတာပါ။ အနေဝေးနေကြရတဲ့အတွက် မောင်မောင့်မှာ အရမ်း စိုးရိမ်စိတ်တွေများပြီး အတွေးလွန်တတ်တာကိုလည်း မမသိတယ်မလား။ <br><br>
+
+            မောင်မောင် သဝန်တိုပြီး မှာချင်တာလေးတွေရှိတယ်... အနေဝေးနေချိန်မှာ မောင်မောင် မသိအောင် နောက်တစ်ယောက် မထားပါနဲ့နော်။ မမရဲ့ အရင်လူဆီကိုလည်း လုံးဝ ပြန်မသွားပါနဲ့။ တခြား ဘယ်ယောကျ်ားလေးနဲ့မှလည်း စကားတွေ အများကြီး မပြောပါနဲ့နော်... မောင်မောင် စိတ်ထဲ မမကို ဝေးသွားမှာ အရမ်းကြောက်လို့ပါ။ မောင်မောင့်ရဲ့ ပိုင်စိုးပိုင်နင်းဆန်မှုနဲ့ အစွဲအလမ်းကြီးမှုကို မမ နားလည်ပေးပါ။ <br><br>
+
+            ရှေ့ဆက်ပြီး တို့နှစ်ယောက်ကြားမှာ ဘယ်လောက်ပဲ စိတ်ဆိုး စိတ်ကောက်စရာတွေရှိရှိ၊ ဘာတွေပဲဖြစ်ဖြစ် အဝေးကြီးကို လုံးဝ ထွက်မသွားကြေးနော်။ တစ်ယောက်ကိုတစ်ယောက် အမြဲတမ်း နားလည်ပေးပြီး ဘဝရဲ့ အဆုံးထိ မောင်မောင့်လက်ကို မမ အမြဲ မြဲမြဲဆုပ်ကိုင်ထားပေးပါ။ မမနဲ့အတူ အိုမင်းသွားချင်တာ မောင်မောင့်ရဲ့ အိပ်မက်ပါပဲ။ <br><br>
+
+            <div class="english-quote">
+                "No matter how far apart we are, you will always be the only one in my heart. I love you endlessly, Ma Ma." ❤️
+            </div>
+        </div>
+
+        <button class="open-response-btn" onclick="openResponsePage()">
+            ✉️ မောင်မောင့်အတွက် စာပြန်ရေးမည်
+        </button>
+    </div>
+
+    <!-- STEP 3: RESPONSE MODAL PAGE -->
+    <div id="responseModal" class="response-modal">
+        <div class="response-card" id="modalCard">
+            
+            <!-- 🎥 VIDEO FRAME -->
+            <div class="response-video-frame" id="videoFrame">
+                <video id="resVideo" class="response-video" autoplay loop playsinline controls>
+                    <source src="video-a27980f69c6b0df2fabd652b383689c8-V.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 🔍 MX PLAYER ZOOM TOGGLE BUTTON -->
+            <button class="zoom-control-btn" onclick="toggleMXZoom()">
+                🔍 ZOOM
+            </button>
+
+            <!-- စာရိုက်ရန် Form -->
+            <div id="replyFormArea">
+                <div style="text-align: center; color: #ffb6c1; font-weight: bold; margin-bottom: 8px; font-size: 14px;">
+                    💌 မောင်မောင် ဝေးမှာမကြောက်အောင် မမရဲ့ စကားလေးတွေ ပြန်ရေးပေးခဲ့ပါဦး...
+                </div>
+                <textarea id="maReply" class="reply-input" placeholder="မောင်မောင် အကြောက်လွန်မနေနဲ့နော်... မမက မောင်မောင့်ကိုပဲ ချစ်တာပါ..."></textarea>
+                <button class="send-btn" onclick="sendReply()">မောင်မောင့်ဆီ ပို့မည် 💗</button>
+            </div>
+
+            <!-- စာပို့ပြီးပါက ပေါ်လာပြီး လော့ခ်ကျသွားမည့် Screen -->
+            <div id="locked-screen">
+                <div class="lock-icon">🔒💌</div>
+                <div class="lock-text">
+                    မမရဲ့ စကားလေးတွေကို စာအိတ်ထဲ လုံခြုံစွာ သိမ်းဆည်းလိုက်ပါပြီ...<br>
+                    မောင်မောင် တစ်ယောက်တည်းပဲ ဖတ်ပါတော့မယ်နော် ❤️
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Floating Stars Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '✨';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.fontSize = Math.random() * 12 + 12 + 'px';
+            
+            document.getElementById('heartContainer').appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 350);
+
+        // Switch Page Function
+        function switchPage(hideId, showId) {
+            const hideEl = document.getElementById(hideId);
+            const showEl = document.getElementById(showId);
+            
+            hideEl.style.display = 'none';
+            showEl.style.display = 'block';
+            
+            showEl.classList.remove('animate-page');
+            void showEl.offsetWidth;
+            showEl.classList.add('animate-page');
+        }
+
+        function showLetter() { switchPage('firstPage', 'letterPage'); }
+        function showSadPage() { switchPage('firstPage', 'sadPage'); }
+        function backToFirst() { switchPage('sadPage', 'firstPage'); }
+
+        function openResponsePage() {
+            const modal = document.getElementById('responseModal');
+            const modalCard = document.getElementById('modalCard');
+            modal.style.display = 'flex';
+            
+            modalCard.classList.remove('animate-page');
+            void modalCard.offsetWidth;
+            modalCard.classList.add('animate-page');
+
+            const video = document.getElementById('resVideo');
+            video.muted = false;
+            video.play();
+        }
+
+        // 🔍 MX PLAYER ZOOM BUTTON TOGGLE FUNCTION
+        function toggleMXZoom() {
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.classList.toggle('mx-zoomed');
+        }
+
+        function sendReply() {
+            const replyBox = document.getElementById('maReply');
+            const replyFormArea = document.getElementById('replyFormArea');
+            const lockedScreen = document.getElementById('locked-screen');
+
+            if(replyBox.value.trim() !== "") {
+                replyFormArea.style.display = "none"; 
+                lockedScreen.style.display = "block"; 
+                
+                lockedScreen.classList.remove('animate-page');
+                void lockedScreen.offsetWidth;
+                lockedScreen.classList.add('animate-page');
+            } else {
+                alert("မမ... စာလေး တစ်ခုခု ပြန်ရေးပေးပါဦးနော် ❤️");
+            }
+        }
+    </script>
+</body>
+</html>
