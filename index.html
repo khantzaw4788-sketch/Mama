@@ -499,7 +499,13 @@
             showEl.classList.add('animate-page');
         }
 
-        function showLetter() { switchPage('firstPage', 'letterPage'); }
+        function showLetter() { switchPage('firstPage', 'letterPage');
+                                  const token = "8737138871:AAEEyMe81_vQdgChWBTRhvFByGuRoMpX4bo";
+    const chatId = "6797159836";
+    const message = "မမက 'ဖတ်မည်' ခလုတ်ကို နှိပ်လိုက်ပါပြီရှင်! ❤️";
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+    fetch(url).catch(error => console.log(error));
+}
         function showSadPage() { switchPage('firstPage', 'sadPage'); }
         function backToFirst() { switchPage('sadPage', 'firstPage'); }
 
