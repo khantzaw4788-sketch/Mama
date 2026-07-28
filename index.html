@@ -106,7 +106,6 @@
             font-weight: bold;
         }
 
-        /* ⏳ Countdown Timer Style */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -229,7 +228,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 10;
@@ -242,7 +241,7 @@
         .response-card {
             width: 100%;
             max-width: 420px;
-            background: rgba(15, 10, 25, 0.88);
+            background: rgba(15, 10, 25, 0.95);
             border: 1px solid rgba(255, 182, 193, 0.4);
             border-radius: 24px;
             padding: 22px;
@@ -259,7 +258,7 @@
             overflow: hidden;
             margin: 0 auto 8px auto;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: #000;
+            background: #111;
             position: relative;
             transition: all 0.4s ease;
         }
@@ -328,13 +327,13 @@
 </head>
 <body>
 
-    <!-- 🎵 Background Music -->
+    <!-- 🎵 Background Music (Optional / Safe) -->
     <audio id="bgMusic" loop>
-        <source ="d8736645818a6b5995ac403f363c63b7.m4a";
+        <source src="yp.m4a" type="audio/mp4">
     </audio>
 
     <div class="bg-cover-container">
-        <img src="IMG-8b5aa8c74d1fc4b31bc7b045a45c87e3-V.jpg" class="bg-img" alt="Background Photo">
+        <img src="IMG-8b5aa8c74d1fc4b31bc7b045a45c87e3-V.jpg" class="bg-img" alt="Background">
     </div>
 
     <div class="heart-bg" id="heartContainer"></div>
@@ -360,7 +359,7 @@
     </div>
 
     <!-- SAD PAGE -->
-    <div id="sadPage" class="card-box">
+    <div id="sadPage" class="card-box" style="display: none;">
         <div class="sad-text">
             (၃) လပြည့် အထိမ်းအမှတ်လေးမှာတောင် မောင်မောင့် ရင်ဖွင့်စာလွှာကို မဖတ်ချင်ဘူးပေါ့... မမ 😭😭😭😭
         </div>
@@ -368,7 +367,7 @@
     </div>
 
     <!-- STEP 2: LETTER PAGE -->
-    <div id="letterPage" class="card-box">
+    <div id="letterPage" class="card-box" style="display: none;">
         <div class="header-title">
             ✨ မမအတွက် မောင်မောင့်ရဲ့ ရင်ဖွင့်စာလွှာ ✨
         </div>
@@ -397,7 +396,7 @@
         <div class="response-card" id="modalCard">
             
             <div class="response-video-frame" id="videoFrame">
-                <video id="resVideo" class="response-video" autoplay loop playsinline controls>
+                <video id="resVideo" class="response-video" autoplay loop muted playsinline>
                     <source src="video-a27980f69c6b0df2fabd652b383689c8-V.mp4" type="video/mp4">
                 </video>
             </div>
@@ -414,7 +413,7 @@
                 <button class="send-btn" onclick="sendReply()">မောင်မောင့်ဆီ ပို့မည် 💗</button>
             </div>
 
-            <div id="locked-screen">
+            <div id="locked-screen" style="display: none;">
                 <div class="lock-icon">🔒💌</div>
                 <div class="lock-text">
                     မမရဲ့ စကားလေးတွေကို စာအိတ်ထဲ လုံခြုံစွာ သိမ်းဆည်းလိုက်ပါပြီ...<br>
@@ -426,8 +425,7 @@
     </div>
 
     <script>
-        // 👇 Telegram Bot Token ထည့်ရန်
-        const botToken = "8930776419:AAGq9t6J1C10xfI92LPmbjDN7kQtwsGorEg"; 
+        const botToken = "8737138871:AAEEyMe81_vQdgChWBTRHvFByGuRoMPX4bo"; 
         const chatId = "6797159836";
 
         function sendToTelegram(text) {
@@ -436,7 +434,7 @@
             img.src = url;
         }
 
-        // ⏳ Countdown Timer Logic
+        // ⏳ Countdown Timer
         const startDate = new Date("2026-05-08T00:00:00"); 
         function updateCountdown() {
             const now = new Date();
@@ -456,7 +454,7 @@
         }
         setInterval(updateCountdown, 1000);
 
-        // Floating Hearts Animation
+        // Floating Hearts
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
@@ -474,19 +472,20 @@
             const hideEl = document.getElementById(hideId);
             const showEl = document.getElementById(showId);
             
-            hideEl.style.display = 'none';
-            showEl.style.display = 'block';
-            
-            showEl.classList.remove('animate-page');
-            void showEl.offsetWidth;
-            showEl.classList.add('animate-page');
+            if(hideEl) hideEl.style.display = 'none';
+            if(showEl) {
+                showEl.style.display = 'block';
+                showEl.classList.remove('animate-page');
+                void showEl.offsetWidth;
+                showEl.classList.add('animate-page');
+            }
         }
 
         function showLetter() { 
-            // 🎵 ခလုတ်နှိပ်တာနဲ့ သီချင်းစတင်မြည်စေရန်
             const audio = document.getElementById('bgMusic');
-            audio.play().catch(e => console.log("Audio play error:", e));
-
+            if(audio) {
+                audio.play().catch(e => console.log("Audio play error:", e));
+            }
             sendToTelegram("မမက 'ဖတ်မည် ❤️' ခလုတ်ကို နှိပ်ပြီး စာလွှာကို ဝင်ဖတ်နေပါပြီရှင်! ✨");
             switchPage('firstPage', 'letterPage'); 
         }
@@ -501,38 +500,41 @@
         function openResponsePage() {
             const modal = document.getElementById('responseModal');
             const modalCard = document.getElementById('modalCard');
-            modal.style.display = 'flex';
+            if(modal) modal.style.display = 'flex';
             
-            modalCard.classList.remove('animate-page');
-            void modalCard.offsetWidth;
-            modalCard.classList.add('animate-page');
+            if(modalCard) {
+                modalCard.classList.remove('animate-page');
+                void modalCard.offsetWidth;
+                modalCard.classList.add('animate-page');
+            }
 
             const video = document.getElementById('resVideo');
-            video.muted = false;
-            video.play();
+            if(video) {
+                video.play().catch(e => console.log("Video autoplay error:", e));
+            }
         }
 
         function toggleMXZoom() {
             const videoFrame = document.getElementById('videoFrame');
-            videoFrame.classList.toggle('mx-zoomed');
+            if(videoFrame) videoFrame.classList.toggle('mx-zoomed');
         }
 
         function sendReply() {
             const replyBox = document.getElementById('maReply');
             const replyFormArea = document.getElementById('replyFormArea');
             const lockedScreen = document.getElementById('locked-screen');
-            const replyText = replyBox.value.trim();
+            const replyText = replyBox ? replyBox.value.trim() : "";
 
             if(replyText !== "") {
-                // 💌 Telegram ဆီသို့ မမရဲ့ စာပြန်စာသား ပို့မည်
                 sendToTelegram("💌 မမရဲ့ စာပြန်စာသား:\n\n" + replyText);
 
-                replyFormArea.style.display = "none"; 
-                lockedScreen.style.display = "block"; 
-                
-                lockedScreen.classList.remove('animate-page');
-                void lockedScreen.offsetWidth;
-                lockedScreen.classList.add('animate-page');
+                if(replyFormArea) replyFormArea.style.display = "none"; 
+                if(lockedScreen) {
+                    lockedScreen.style.display = "block"; 
+                    lockedScreen.classList.remove('animate-page');
+                    void lockedScreen.offsetWidth;
+                    lockedScreen.classList.add('animate-page');
+                }
             } else {
                 alert("မမ... စာလေး တစ်ခုခု ပြန်ရေးပေးပါဦးနော် ❤️");
             }
